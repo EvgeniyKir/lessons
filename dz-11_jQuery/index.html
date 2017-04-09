@@ -46,18 +46,17 @@
 //           }) ;
             //////////////////////////////////////////
             $(".itemlist").bind("click", function (){
-               //$(this).children().fadeIn(1000);
-                //if( ($(".listcites").css("display") == "block") )
+              
                         if($(this).css("class") == $(".listcites").css("class")) {
                     console.log( "Name" + $(this).css("class"));
                     $(".listcites").slideUp(1000);
                 }
-                //if( ($(".listanimal").css("display") == "block") &&
+                
                         if($(this).css("class") == $(".listanimal").css("class")){
                             console.log( "Name" + $(this).css("class"));
                     $(".listanimal").slideUp(1000);
                 }
-                //if( ($(".listrflowers").css("display") == "block") &&
+                
                         if($(this).css("class") == $(".listflowers").css("class")){
                             console.log( "Name" + $(this).children().css("class"));
                     $(".listrflowers").slideUp(1000);
