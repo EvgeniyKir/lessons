@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+            width: 500px;
+			border: 1px solid transparent;
+            margin: 20px auto;
+            background: #cecece;
+			box-sizing: border-box;
+        }
+        .itemlist, li ul li {
+            padding:10px;
+        }
+        .listrflowers, .listcites, .listanimal {
+            display: none;
+        }
+        ul {
+
+            margin: 10px auto;
+            list-style-type: none;
+            font-family: "Arial";
+            font-size: 20px;
+            padding: 0 20px;
+        }
+        .itemflowers, .itemlistanimal, .itemlistcites {
+            width: 400px;
+            margin: 20px auto;
+        }
+        li.gradientli {
+
+            background-image: -webkit-linear-gradient(bottom, #888 0%, #aaa 100%);
+
+        }
+
+    </style>
+    <script src="jquery-3.2.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //////////////////////////////////////////
+//           $(".itemlist").bind("click", function (){
+//               //$(this).children().fadeIn(1000);
+//               $(this).children().slideToggle(1000);
+//           }) ;
+            //////////////////////////////////////////
+            $(".itemlist").bind("click", function (){
+               //$(this).children().fadeIn(1000);
+                //if( ($(".listcites").css("display") == "block") )
+                        if($(this).css("class") == $(".listcites").css("class")) {
+                    console.log( "Name" + $(this).css("class"));
+                    $(".listcites").slideUp(1000);
+                }
+                //if( ($(".listanimal").css("display") == "block") &&
+                        if($(this).css("class") == $(".listanimal").css("class")){
+                            console.log( "Name" + $(this).css("class"));
+                    $(".listanimal").slideUp(1000);
+                }
+                //if( ($(".listrflowers").css("display") == "block") &&
+                        if($(this).css("class") == $(".listflowers").css("class")){
+                            console.log( "Name" + $(this).children().css("class"));
+                    $(".listrflowers").slideUp(1000);
+                }
+
+                if($(this).children().css("display") == "block" ){
+                    $(this).children().slideUp(1000);
+                }
+                else {
+                    $(this).children().css("color", "#ffffff").css("background", "#aaaaaa").slideToggle(1000);
+                }
+           }) ;
+
+        });
+
+
+    </script>
+</head>
+<body>
+<div>
+    <ul>
+        <li class="itemlist gradientli">
+            Города
+            <ul class="listcites">
+                <li class="itemlistcites">Киев</li>
+                <li class="itemlistcites">Запорожье</li>
+                <li class="itemlistcites">Днепр</li>
+                <li class="itemlistcites">Васюки</li>
+            </ul>
+        </li>
+        <li class="itemlist gradientli">
+            Животные
+            <ul class="listanimal">
+                <li class="itemlistanimal">Бык</li>
+                <li class="itemlistanimal">Лось</li>
+                <li class="itemlistanimal">Слон</li>
+            </ul>
+        </li>
+        <li class="itemlist gradientli">
+            Цветы
+            <ul class="listrflowers">
+                <li class="itemflowers">Пион</li>
+                <li class="itemflowers">Тюльпан</li>
+                <li class="itemflowers">Ландыш</li>
+                <li class="itemflowers">Подснежник</li>
+                <li class="itemflowers">Гладиолус</li>
+                <li class="itemflowers">Герань</li>
+                <li class="itemflowers">Лаванда</li>
+            </ul>
+        </li>
+    </ul>
+
+</div>
+</body>
+</html>
