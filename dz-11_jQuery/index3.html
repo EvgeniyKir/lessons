@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dz 11 jQuery </title>
+    <style type="text/css">
+        div {
+            width: 500px;
+            border: 1px solid transparent;
+            margin: 100px auto 0;
+            background: #cecece;
+            
+            box-sizing: border-box;
+        }
+        .itemlist, li ul li {
+            padding:10px;
+        }
+        .listrflowers, .listcites, .listanimal {
+            display: none;
+        }
+        ul {
+
+            margin: 10px auto;
+            list-style-type: none;
+            font-family: "Arial";
+            font-size: 20px;
+            padding: 0 20px;
+        }
+
+        li.gradientli {
+
+            background-image: -webkit-linear-gradient(bottom, #888 0%, #aaa 100%);
+            background-image: linear-gradient(bottom, #888 0%, #aaa 100%);
+        }
+        p {
+            width: 100%;
+            height:40px;
+        }
+        p:first-child {
+            margin-left: 5%;
+        }
+        p span {
+            display: inline-block;
+            width: 30%;
+            height: 30px;
+            margin-top:5px;
+            font-family: "Arial";
+            font-size: 16px;
+        }
+    </style>
+    <script type="text/javascript" src="jquery-3.2.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("input").click( selectelement);
+    
+
+            function selectelement () {
+                
+console.log("click");
+
+                if($(this).attr("checked") == "checked"){
+                    $(this).removeAttr("checked");
+                }
+                else {
+                        $(this).attr("checked", "checked");
+                    }
+
+                $("input").each(function(i){
+                    if( $(this).attr("checked") == "checked" ) {
+                        console.log("attr checked");
+                        if (i == 0) {
+                            $(".listcites").css("color", "#ffffff").show(1000);
+                        }
+                        else if (i == 1) {
+                            $(".listanimal").css("color", "#ffffff").show(1000);
+                        }
+                        else if (i == 2) {
+                            $(".listrflowers").css("color", "#ffffff").show(1000);
+                        }
+                    }
+                    else {
+                        if (i == 0) {
+                            $(".listcites").hide(1000);
+                        }
+                        else if (i == 1) {
+                            $(".listanimal").hide(1000);
+                        }
+                        else if (i == 2) {
+                            $(".listrflowers").hide(1000);
+                        }
+                    }
+
+                });
+            }
+
+        });
+    </script>
+</head>
+<body>
+<div>
+    <p>
+        <span><input type="checkbox">Выбор городов</span>
+        <span><input type="checkbox">Выбор животных</span>
+        <span><input type="checkbox">Выбор цветов</span>
+    </p>
+    <ul>
+        <li class="itemlist gradientli">
+            Города
+            <ul class="listcites">
+                <li class="itemlistcites">Киев</li>
+                <li class="itemlistcites">Запорожье</li>
+                <li class="itemlistcites">Днепр</li>
+                <li class="itemlistcites">Васюки</li>
+            </ul>
+        </li>
+        <li class="itemlist gradientli">
+            Животные
+            <ul class="listanimal">
+                <li class="itemlistanimal">Бык</li>
+                <li class="itemlistanimal">Лось</li>
+                <li class="itemlistanimal">Слон</li>
+            </ul>
+        </li>
+        <li class="itemlist gradientli">
+            Цветы
+            <ul class="listrflowers">
+                <li class="itemflowers">Пион</li>
+                <li class="itemflowers">Тюльпан</li>
+                <li class="itemflowers">Ландыш</li>
+                <li class="itemflowers">Подснежник</li>
+                <li class="itemflowers">Гладиолус</li>
+                <li class="itemflowers">Герань</li>
+                <li class="itemflowers">Лаванда</li>
+            </ul>
+        </li>
+    </ul>
+
+</div>
+</body>
+</html>
