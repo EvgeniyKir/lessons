@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            width: 80%;
+            min-width: 700px;
+            max-width: 800px;
+            margin: 100px auto 0px;
+            background-color: #EEEEBB;
+            border: 1px solid transparent;
+            border-radius: 15px;
+            font-family: Arial;
+        }
+        ul {
+            position: relative;
+            width:90%;
+            min-width: 600px;
+            list-style-type: none;
+            margin:20px auto;
+            padding: 20px;
+            background-color: #aaaaff;
+            border-radius: 15px;
+            /*text-align: center;*/
+        }
+        p {
+            width : 40%;
+        }
+        div.but {
+            margin: 20px auto;
+            width:80%;
+            min-width: 400px;
+
+        }
+        button {
+            margin: 0 40% auto;
+            width: 100px;
+        }
+        .vacation {
+            display: inline-block;
+            top: 0px;
+            right: 5%;
+            position: absolute;
+            border-radius: 5px;
+            color: #ffffff;
+            background-color: #ccc;
+            visibility: hidden;
+        }
+        .visib {
+
+            visibility: visible;
+
+        }
+       
+        .hiddenblock {
+            display: none;
+        }
+        td {
+            width: 50px;
+            background-color: #ccc;
+        }
+    table, table td {
+        margin: 20px auto 10px;
+        border: 1px solid #ccc;
+    }
+
+        .jobevacantions {
+
+        }
+    </style>
+    <script src="jquery-3.2.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+           $("button").bind("click", function(e){
+               $(".hiddenblock").css("display", "block");
+           }) ;
+           $(".hiddenblock td").click(function(){
+              $(this).each(function(){
+                  if($(this).text() == "+1 d") {
+                      $("li").css("font-size", "12px");
+                  }
+                  if($(this).text() == " 0 d") {
+                      $("li").css("font-size", "16px");
+                  }
+                  if($(this).text() == "-1 d") {
+                      $("li").css("font-size", "20px");
+                  }
+                  if($(this).text() == "-2 d") {
+                      $("li").css("font-size", "24px");
+                  }
+                 if($(this).text() == "-3 d") {
+                     $("li").css("font-size", "30px");
+                 }
+                  if($(this).text() == "-4 d") {
+                      $("li").css("font-size", "36px");
+                  }
+              }) ;
+           });
+           $("li").click(function(){
+              // alert($(this).children("span.vacation").toString());
+
+
+               $(this).siblings().children("span.vacation").animate(
+                       {width: "",
+                           height : "",
+                           visibility : "",
+
+                           "padding-top" : "5%",
+                           display : "",
+                           top : "0px",
+                           right: "5%",
+                           "font-wight": "normal",
+                           "font-size" : "0"}, 1000);
+                $(this).siblings().children("p").css({"background": "transparent",
+                    "font-style" : "normal",
+                    "padding-left": ""});
+
+
+               $(this).children("span.vacation").css("visibility", "visible").animate(
+                       {width: "35%",
+                           height : "20%",
+                           visibility : "visible",
+                           "font-size" : "0.9em",
+                           "padding-top" : "5%",
+                           display : "block",
+                           top : "10%",
+                           right: "5%",
+                           "font-wight": "bold"}, 1000);
+               $(this).children("p").css({"background": "#ccc",
+                   "font-style" : "italic",
+                    "padding-left": "5%"});
+
+           });
+
+        });
+    </script>
+</head>
+<body>
+<div>
+
+    <ul class="jobevacantions">
+        <li><p class="prof"><span>Дворник</span><span> 3000uh</span></p><span class="vacation">Колличество вакансий 1</span></li>
+        <li><p class="prof"><span>Зам дворника</span><span>2500гр</span></p><span class="vacation">Колличество вакансий 2</span></li>
+        <li><p class="prof"><span>Грузчик</span><span>от 4000гр</span></p><span class="vacation">Колличество вакансий 3</span></li>
+        <li><p class="prof"><span>Зам грузчика</span><span> 3500гр</span></p><span class="vacation">Колличество вакансий 4</span></li>
+        <li><p class="prof"><span>Глав бухгалтер</span><span> от 5000гр</span></p><span class="vacation">Колличество вакансий 5</span></li>
+        <li><p class="prof"><span>Зам глав бух</span><span> 3500гр</span></p><span class="vacation">Колличество вакансий 6</span></li>
+    </ul>
+    <div class="but">
+        <button>Специальные возможности</button>
+    </div>
+    <div class="hiddenblock">
+        <table>
+            <tr>
+                <td>-4 d</td>
+                <td>-3 d</td>
+                <td>-2 d</td>
+                <td>-1 d</td>
+                <td> 0 </td>
+                <td>+1 d</td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
