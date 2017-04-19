@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form validation and jQuery</title>
+    <style>
+        div {
+            margin: 0 auto;
+            width: 700px;
+            font-family: Arial;
+            background-color: #fff8dc;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        input, p {
+            margin:10px auto;
+            width: 320px;
+            font-size: 20px;
+            padding: 5px;
+        }
+        p {
+            margin: 10px auto;
+            width: 90%;
+            text-align: center;
+        }
+        .hidefatalclass {
+            visibility: hidden;
+        }
+        .fatalclass {
+            visibility: visible;
+            color: #ff0000;
+            border: 1px solid #ff0000;
+        }
+
+
+    </style>
+    <script src="jquery-3.2.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var valinput;
+            var strval;
+            var result;
+            var flagfio = false;
+            var flagdatnas = false;
+            var tmplexprfio = /[а-яА-Я]+?[ ][а-яА-Я]+?[ ][а-яА-Я]+?/;
+            var tmplexprdatanas = /^[0-3][0-9][ ./-][0,1][0-2][ ./-][0-9]{4}$/;
+
+            $("input").focus(function(e){
+                // valinput = $(this).val();
+               $(this).val("");
+                $(this).next().removeClass("fatalclass");
+
+            });
+
+            $("input").blur(function(e){
+               // strval = $(this).val();
+               // alert("several " + strval);
+          //      $("input").each(function(ind, el){
+                    if(this.id === "fio") {
+                        strval = $(this).val();
+
+                        result = strval.match(tmplexprfio);
+
+                        if (result != null){
+
+                            flagfio = true;
+                            $(this).attr("value", result);
+
+                            $("#hidefclass1").val("").removeClass("fatalclass").addClass("hidefatalclass");
+                            $("#hidefclass2").removeClass("fatalclass").addClass("hidefatalclass");
+                        }
+                        else {
+
+                            flagfio = false;
+                            $("#hidefclass2").removeClass("fatalclass").addClass("hidefatalclass");
+                            $("#hidefclass1").removeClass("hidefatalclass").addClass("fatalclass").val("").val("Вы ввели  " + result);
+                            // $("#divone").append("<p class='comumstyle'>Неправильно введены данные ФИО</p>").css("color", "#ff0000");
+                        }
+                    }
+                    else if (this.id === "datanas") {
+                        strval = $(this).val();
+
+                        result = strval.match(tmplexprdatanas);
+
+                        if (result != null){
+
+                            flagdatnas = true;
+                            $(this).attr("value", result);
+
+                            $("#hidefclass2").val("").removeClass("fatalclass").addClass("hidefatalclass");
+                            $("#hidefclass1").removeClass("fatalclass").addClass("hidefatalclass");
+                        }
+                        else {
+                            flagdatnas = false;
+                            $("#hidefclass1").removeClass("fatalclass").addClass("hidefatalclass");
+                            $("#hidefclass2").removeClass("hidefatalclass").addClass("fatalclass").val("").val("Вы ввели  " + result);
+                            // $("#divone").append("<p class='comumstyle'>Неправильно введены данные ФИО</p>").css("color", "#ff0000");
+                        }
+                    }
+           //     });
+//               result = strval.match(tmplexprfio);
+//                $(this).val(valinput);
+
+
+            });
+
+            $("#go").click(function(e){
+                 if( flagdatnas == true && flagfio == true ) {
+                     $('form').submit();
+                     flagdatnas = false;
+                     flagfio = false;
+                     alert("Данные отправлены");
+                 }
+                else {
+                     e.preventDefault();
+//                     flagdatnas = false;
+//                     flagfio = false;
+                     alert("Данные не корректны попробуйте ещё раз заполнить поля формы.");
+                     return false;
+                 }
+            });
+
+        });
+    </script>
+</head>
+<body>
+<!--
+    Домашнее задание к лекции о формах и валидации:
+
+используя регулярные выражения, проверить верность ввода данных в форме-подтверждении профиля пользователя.
+поля для ввода - год рождения и фио.
+Фамилия не должна содержать цифр, год не должен содержать букв. Отправить форму если все в порядке
+-->
+<form action="index2.html" method="get" name="myform">
+    <p class="comumstyle">Добавление нового резюме.</p>
+    <div class="left" id="divone">
+        <p class="comumstyle"> ФИО</p>
+        <p class="comumstyle"><input type="text" id="fio" name="myfio" value="Ввод цифр недопустим."></p>
+        <p id="hidefclass1" class="comumstyle hidefatalclass">При вводе данных используйте только буквы.</p>
+        <p class="comumstyle"> Год рождения</p>
+        <p class="comumstyle"><input type="text" id="datanas" name="mydatanas" value="Ввод букв недопустим."> </p>
+        <p id="hidefclass2" class="comumstyle hidefatalclass">При вводе данных используйте только цифры</p>
+        <p class="clearfloat comumstyle">
+            <button id="go" >Отправить</button>
+        </p>
+    </div>
+    <!--
+    <input type="submit">
+    -->
+</form>
+</body>
+</html>
