@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #wrapcontent {
+            position: relative;
+        }
+        div { position: relative;
+            margin: 10px auto;
+            padding: 20px;
+            width: 40%;
+            min-width: 500px;
+            text-align: center;
+        }
+        button {
+            position: relative;
+            top: 120px;
+            display: inline-block;
+            margin: 0px 10% auto;
+        }
+        #blockprof {
+            position: absolute;
+            /*left: 0px;      */
+            width: 40%;
+            margin: 10px auto;
+            padding: 10px;
+            background-color: #8888FF;
+            font-family: Arial;
+            font-size: 12px;
+        }
+    </style>
+    <script src="jquery-3.2.1.js"></script>
+    <script>
+            $(document).ready(function(){
+                var posleft = $("#blockprof").css("left");
+                var postop = $("#blockprof").css("top");
+                 alert(parseInt(postop));
+
+                    $("#spetialpos").bind("click", function(ev){
+                        postop = $("#blockprof").css("top");
+                        $(this).prop("disabled", true);
+                        $("#normalpos").prop("disabled", false);
+                        if(parseInt(postop) === 20) {
+
+                                $("#blockprof").animate({left : "500px", minWidth : "100px"},1000)
+                                        .animate({top : "250px"}, 1000)
+                                        .animate({left : posleft, minWidth : "500px", color : "#ffffff", fontSize : "46px"},1000 );
+
+                                var timeint = setInterval(function(){
+                                $("#blockprof").css({"backgrondColor" : "#444", "color" :"#fff", "borderRadius" : "10px", "text-shadow" :
+                                "0 0 5px gray, 0 0 10px gray, 0 0 15px white, 0 0 20px crimson, 0 0 35px crimson, 0 0 40px crimson, 0 0 50px crimson"});
+                                clearInterval(timeint);}, 3500);
+
+
+                            }
+                    });
+
+                $("#normalpos").bind("click", function(ev){
+                    postop = $("#blockprof").css("top");
+                    $(this).prop("disabled", true);
+                    $("#spetialpos").prop("disabled", false);
+                    if(parseInt(postop) !== 20) {
+
+//                        $("#blockprof").animate({left : "500px", minWidth : "100px"},1000)
+//                                .animate({top : "250px"}, 1000)
+//                                .animate({left : posleft, minWidth : "500px", color : "#ffffff", fontSize : "46px"},1000 );
+                            $("#blockprof").animate({"backgrondColor" : "#8888ff", "color" :"#000",
+                            fontSize : "12px", minWidth : "100px", left : "500px"}, 1000)
+                                    .animate({"top" : "20px"}, 1000)
+                                    .animate({"left" : "20px", "width" : "40%", minWidth : "500px", "backgrondColor" : "#8888FF"}, 1000);
+
+                        var timeint = setInterval(function(){
+                            $("#blockprof").css({"backgrondColor" : "#8888ff", "color" :"#000", borderRadius : "", "text-shadow" : ""});
+                            clearInterval(timeint)}, 3500);
+
+                    }
+                });
+
+            });
+
+    </script>
+</head>
+<body>
+<!--      Домашнее задание: используя метод animate и блоки div содержащие названия профессий - анимировать
+их увеличение вместе со шрифтом и бордюром. короче, это плавный аналог специальной возможности по зрению.      -->
+<div class="wrapcontent">
+    <div id="blockprof">
+        <p class="prof1">Профессия 1</p>
+        <p class="prof1">Профессия 2</p>
+        <p class="prof1">Профессия 3</p>
+    </div>
+    <div >
+        <button id="spetialpos">Спец возможности</button>
+        <button id="normalpos">Обычный режим</button>
+    </div>
+</div>
+</body>
+</html>
