@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>Send form</title>
+	<!--
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+	-->
+		<style>
+		#wrapform {
+			width: 300px;
+			margin: 20px auto;
+		}
+		span {
+			float: left;
+			margin-bottom: 20px;
+		}
+		select {
+			float: right;
+			margin-bottom: 20px;
+		}
+		p {
+			clear: both;
+		}
+	
+		.sendcolor {
+			background-color: #2ecc71;
+			color: #ffffcc;
+		}
+	</style>
+	
+</head>
+<!--      
+домашнее задание:
+написать форму, в которой человек выбирает три понравившихся товара
+(из трех списков) после отправки формы, javsacript должен проанализировать 
+переданные формой данные и определить предпочтения пользователя (на ваше 
+усмотрение) по выбранным продуктам
+
+подсказка: списки select могут содержать значения (value) для каждой позиции
+      -->
+<body>
+<div id="wrapform">
+	<form action="#" id="idform" method="get" name="products">
+	<!--
+		<p><span>Выбор (овощи или фрукты)</span>
+			<select name="producttype" id="prodtype">
+				<option value="">Фрукты</option>
+				<option value="" >Овощи</option>
+			</select>
+		</p>
+	-->
+		<p><span>Овощи</span>
+			<select name="veg" size="1" id="veget">
+				<option data-val="idd" value="" selected >Выберите овощи </option>
+				<option data-val="id1" value="Картошка" >Картошка</option>
+				<option data-val="id2" value="Огурцы" >Огурцы</option>
+				<option data-val="id3" value="Капуста" >Капуста</option>
+			</select>
+		</p>
+		<p><span>Фрукты</span>
+			<select name="frut" id="fruts">
+				<option data-val="idd" value="" selected>Выберите фрукты</option>
+				<option data-val="id4" value="Яблоки" >Яблоки</option>
+				<option data-val="id5" value="Бананы" >Бананы</option>
+				<option data-val="id6" value="Апельсины" >Апельсины</option>
+			</select>
+		</p>
+		<p><span>Мясо</span>
+			<select name="meat" id="totals">
+				<option data-val="idd" value="" selected> Выберите мясо&nbsp;</option>
+				<option data-val="id7" value="Говядина" >Говядина</option>
+				<option data-val="id8" value="Курятина" >Курятина</option>
+				<option data-val="id9" value="Свинина" >Свинина</option>
+
+			</select>
+		</p>
+		<p>&nbsp;</p>
+			<input id="submitid" type="submit" value="Отправить" name="submitbutton">
+
+		
+	</form>
+	<div class="outresult">Результат отправки данных
+			<p>&nbsp;</p>
+	</div>
+
+</div>
+
+</body>
+<script src="jquery-3.2.1.js"></script>
+<script>
+		$(document).ready(function(){
+			// Выбрать выбраные элементы
+
+			
+			var newelem = 0;
+			var arrvalue = {
+				"veg" : "",
+				"frut": "",
+				"meat": ""
+			};
+			
+			
+//////////////////////////////////////////////////////////////
+			$("#submitid, #idform").submit(function(e){
+				if( newelem >= 3 ){
+				var valnotnull = 0;
+					for (var key in arrvalue) {
+						if(arrvalue[key] == ""){
+							valnotnull += 1;
+						}
+					}
+					if(valnotnull == 0) {
+						var newreselement = $("<p>" + arrvalue['veg'] + "<br>" + arrvalue['frut'] + "<br>" + arrvalue['meat'] + "</p>");
+						$(".outresult p").append(newreselement);
+						alert("Овощи : " + arrvalue['veg'] + "\n Фрукты : " + arrvalue['frut'] + "\n Мясо : " + arrvalue['meat']);
+						
+						for (var val in arrvalue) {
+							arrvalue[val] = "";
+						}
+						$("select").removeClass("selchange");
+						newelem = 0;
+									
+					}
+					
+				}
+				else if( newelem < 3 ){
+					alert("Не все продукты выбраны");
+					return false;
+				}
+				
+			});
+/////////////////////////////////////////////////////////////////////////
+			$("select").change(function(e){
+				if( $(this).hasClass("selchange") ){
+					arrvalue[$(e.target).attr("name")] = $(e.target).val();
+					newelem++;
+				}
+				else {
+				$(this).addClass("selchange");
+					
+				
+				arrvalue[$(e.target).attr("name")] = $(e.target).val();
+				newelem++;
+				
+				}
+			});
+
+		});
+	</script>
+</html>
