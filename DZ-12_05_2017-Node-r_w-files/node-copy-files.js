@@ -14,13 +14,12 @@ function copyfiles(filename, fnamewrite){
 
 	var rd = fs.createReadStream(filename).setEncoding('utf-8');
 	var wd = fs.createWriteStream(fnamewrite);
+	
 	rd.on('data', function(data) {
-		dat = data;
-		// rd.pipe(wd);
+		dat = data;		
 		console.log(dat + " event data");
 	} );
 	
-
 	rd.on('error', function(data2) {
 		dat = undefined;
 		console.log(dat + " event error");
@@ -28,14 +27,12 @@ function copyfiles(filename, fnamewrite){
 	
 	rd.on('end', function(dat3) {
 		console.log(dat + " event end");
-		// dat.pipe(wd);
-		// dat.setEncoding('utf-8');
 		wd.write(dat);
 	});
-	rd.on('finish', function(d4) {
-		
+	rd.on('finish', function(d4) {		
 		console.log(dat + " event finish");
 	});
+	
 	return dat;
 }
 ////////////////////////////////////////
@@ -44,9 +41,9 @@ var server = http.createServer (function(req, resp){
 	
 	var param = url.parse(req.url, true).query.val;
 	var param2 = url.parse(req.url, true).query.valwr;
-	// var readdata;
+	
 	if( typeof param == "undefined" ){
-				// console.log(param + " Value of parametr ");
+				
 		resp.writeHead(400, {"Content-Type":"text/html;charset=utf-8"});
 	
 		resp.write("<div style='width: 300px; '>" + 
@@ -58,7 +55,6 @@ var server = http.createServer (function(req, resp){
 		resp.end("End.");
 	}
 	else {
-		// console.log(param + " Value of parametr");
 		
 	resp.writeHead(200, {"Content-Type":"text/html;charset=utf-8"});
 	var result = copyfiles(param, param2);
