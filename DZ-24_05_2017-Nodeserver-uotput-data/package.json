@@ -1,0 +1,15 @@
+{
+  "name": "server_data_resp_req",
+  "version": "0.0.1",
+  "description": "Отправление и получение данных на сервер и от него",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3"
+  }
+}
