@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+		<title>jQuery AJAX</title>
+		<!--      <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>      -->
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+		
+		<style >
+			body {
+				background-color: #dad7c7;
+			}
+			#searcharea, #update, #formexemple {
+				min-width: 150PX;
+				max-width: 200px;
+				margin: 20px auto;
+				background-color: #cd853f;
+				padding: 20px;
+			}
+			input {
+				display: block;
+				/*margin: 5px auto;      */
+			}
+		</style>
+		
+		<script>
+			$(document).ready(function () {
+				var datafilename;
+				var choiceform = document.getElementById("list");
+				choiceform.onchange = function(e) {
+					if(choiceform.selectedIndex == 0 ){
+						datafilename = "data.json";
+					}
+					else if (choiceform.selectedIndex == 1 ) {
+						datafilename = "data2.json";
+					}
+					else{
+						alert("json ");
+						return;
+					}
+				};
+				
+				$("#button").on('click', function(e) {
+				
+					$.getJSON( datafilename, function(data) {
+						var dsearched = "<form action='' method='get' name='formsearch'>";
+							// console.log(data.text["type"]);
+						dsearched += "<" + data.items["item2"] + "> " +
+						data.datafild["fio"] + " </" + data.items["item2"] + ">";
+							
+						dsearched += "<" + data.items["item1"] + " " +
+						data.type + "='" + data.text + "'>";
+						
+						dsearched += "<br /><" + data.items["item2"] + "> " +
+						data.datafild["age"] + " </" + data.items["item2"] + ">";
+						
+						dsearched += "<" + data.items["item1"] + " " +
+						data.type + "='" + data.number + "'>";
+						
+						dsearched += "<br /><" + data.items["item2"] + "> " +
+						data.datafild["post"] + " </" + data.items["item2"] + ">";
+							
+						dsearched += "<" + data.items["item1"] + " " +
+						data.type + "='" + data.text + "'>";
+						
+						dsearched += "</form>";
+						$("#update").html(dsearched);
+					} );
+				});	
+			});
+		</script>
+	</head>
+	<body>
+		<div id="searcharea">
+			
+			<p>Выберите тип формы <br />(форма на отпуск)<br />(форма данных)</p>
+			<select id = "list">
+				<option>Форма данных сотрудника</option>
+				<option>Форма данных на отпуск</option>
+				
+			</select>
+			<p><button id="button">Создать форму</button></p>
+		</div>
+		<div id="update">Здесь будут записаны данные полученные с помощью Query ajax </div>
+		
+	</body>
+</html>

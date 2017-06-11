@@ -1,0 +1,18 @@
+{
+"attributes":{
+	"action":"jquery_ajax.html",
+	"method": "POST",
+	"name": "newForm"
+	},
+"type": "type",
+"text": "text",
+"number": "number",
+"items": {
+	"item1": "input",
+	"item2": "label",
+	"item3": "checkbox"
+	},
+"datafild":{"fio": "Фамилия Имя Отчество",
+			"age": "Ваш возраст",
+			"post": "Ваша должность"}	
+}
