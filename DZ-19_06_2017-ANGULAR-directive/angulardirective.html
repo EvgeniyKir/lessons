@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+   <head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <title>Angulars directivs</title>
+
+      <script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	<style>
+		.myClass1 {
+			margin: 10px auto;
+			width: 400px;
+			height: 200px;
+			color: #00008b;
+			font-size:24px;
+			 border: 3px solid #0000ff;
+		}
+		.myClass2 {
+			margin: 10px auto;
+			width: 400px;
+			height: 200px;
+			color: #0000ff;
+			font-size:24px;
+			border: 3px solid #000ddd;
+		}
+		.myClass3 {
+			margin: 10px auto;
+			width: 400px;
+			height: 200px;
+			color: #f0f00f;
+			font-size:30px;
+			border: 3px solid #000ddd;
+		}
+		.myClass4 {
+			margin: 10px auto;
+			width: 400px;
+			height: 200px;
+			color: #f0f00f;
+			font-size:30px;
+			border: 3px solid #000ddd;
+		}
+		.myClass5 {
+			margin: 10px auto;
+			width: 400px;
+			height: 200px;
+			color: #f0f00f;
+			font-size:30px;
+			border: 3px solid #00dddd;
+		}
+	</style>
+	<!--
+домашнее задание:написать программу, которая позволяет просмотреть 
+один из пяти предустановленных стилей, путем ввода соответственной 
+цифры в поле ввода.
+	-->
+   </head>  
+
+   <body    >
+
+      <h2 style='text-align:center'>Выбираем стиль</h2>     
+
+      <div ng-app = "mainApp" ng-controller = "Controller" style='text-align:center'>
+
+         Введите номер стиля (цифры от 1 до 5):<br> <input type = "text" ng-model = "n.code"><br><br>      
+
+         <br>        
+
+          <span style='font-size:28px'>{{n.fullName()}}</span>
+		  <div style="font-size: 32px;" ng-bind="n.code"></div>
+ <!-- <span style='font-size:28px' ng-bind="n"><strong></strong></span> -->
+ <div ng-style="mystyle" ng-class="myclass">{{n.fullName()}}</div>
+			
+      </div>     
+      <script>
+         var mainApp = angular.module("mainApp", []);
+                 mainApp.controller('Controller', function($scope) {
+					
+            $scope.n = {
+				code : "",
+               fullName: function() {  
+					if( $scope.n.code == "1" ){
+						$scope.mystyle = { background : "#cdbcab"};
+						$scope.myclass = "myClass" + $scope.n.code;
+						return "Стиль " + $scope.n.code + " " +
+								" Класс " + $scope.myclass;
+					}
+					else if ($scope.n.code == "2") {
+						$scope.mystyle = {background : '#cccccc'};
+						$scope.myclass = "myClass" + $scope.n.code;
+						return "Стиль " + $scope.n.code + " " +
+								" Класс " + $scope.myclass;
+					}
+					else if ($scope.n.code == "3") {
+						$scope.mystyle = {background : '#0c0c0c'};
+						$scope.myclass = "myClass" + $scope.n.code;
+						return "Стиль " + $scope.n.code + " " +
+								" Класс " + $scope.myclass;
+					}
+					else if ($scope.n.code == "4") {
+						$scope.mystyle = {background : '#c0c0c0'};
+						$scope.myclass = "myClass" + $scope.n.code;
+						return "Стиль " + $scope.n.code + " " +
+								" Класс " + $scope.myclass;
+					}
+					else if ($scope.n.code == "5") {
+						$scope.mystyle = {background : '#000000'};
+						$scope.myclass = "myClass" + $scope.n.code;
+						return "Стиль " + $scope.n.code + " " +
+								" Класс " + $scope.myclass;
+					}
+				}
+
+            };
+
+         });
+
+      </script>     
+
+   </body>
+
+</html>

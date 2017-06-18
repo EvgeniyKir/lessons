@@ -1,0 +1,141 @@
+<!doctype html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="utf-8">
+		<!--
+домашнее задание:написать программу, которая позволяет просмотреть 
+один из пяти предустановленных стилей, путем ввода соответственной 
+цифры в поле ввода.
+	-->
+	<style>
+		div {
+			margin: 5px auto;
+			width: 400px;
+		}
+		p {
+			margin: 5px auto;
+			width: 200px;
+		}
+		.styledefault {
+			margin: 10px auto;
+			padding: 5px;
+			width: 400px;
+			height: 200px;
+			border: 1px solid #191970;
+			background-color: #fafad2;
+			color: #ee82ee;
+			font-size: 30px;
+			text-align: center;
+		}
+		.greystyle{
+			margin: 10px auto;
+			padding: 5px;
+			width: 400px;
+			height: 200px;
+			border: 1px solid #191970;
+			background-color: #cccccc;
+			color: #191970;
+			font-size: 30px;
+			text-align: center;
+		}
+		.pinckstyle {
+			margin: 10px auto;
+			padding: 5px;
+			width: 400px;
+			height: 200px;
+			border: 1px solid #ff4500;
+			background-color: #ff86c1;
+			color: #4b0082;
+			font-size: 30px;
+			text-align: center;
+		}
+		.rosestyle {
+			margin: 10px auto;
+			padding: 5px;
+			width: 400px;
+			height: 200px;
+			border: 1px solid #ff0000;
+			background-color: #ffe4c4;
+			color: #ff00ff;
+			font-size: 30px;
+			text-align: center;
+		}
+		.bluestyle {
+			margin: 10px auto;
+			padding: 5px;
+			width: 400px;
+			height: 200px;
+			border: 1px solid #00ffff;
+			background-color: #dcdcdc;
+			color: #00bfdf;
+			font-size: 30px;
+			text-align: center;
+		}
+		.greenstyle {
+			margin: 10px auto;
+			padding: 5px;
+			width: 400px;
+			height: 200px;
+			border: 1px solid #808000;
+			background-color: #2e8b57;
+			color: #ffffff;
+			font-size: 30px;
+			text-align: center;
+		}
+	</style>
+	</head>
+<body>
+	<div ng-controller="styleController">
+		<p>Введите стиль от style1 до style5 для выбора стиля блока</p>
+		<p><input type="text" ng-model="styles.data" placeholder="style0"></p>
+		<p ng-bind="styles.data"></p>
+		<p ng-bind="styles.newClass"></p>
+		<p  ng-class="styles.newClass">{{styles.setStyle()}}</p>
+	</div>
+<!--       <script src="angular.min.js"></script>       -->
+<script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script type="text/javascript">
+var myapp=angular.module('myApp', []);
+myapp.controller('styleController', function($scope) {
+ 
+  $scope.styles = {
+			data: "",
+			newClass: "",			
+			style1: "greystyle",
+			style2: "pinckstyle",
+			style3: "rosestyle",
+			style4: "bluestyle",
+			style5: "greenstyle",
+			setStyle: function(){
+				if($scope.styles.data == "style1") {
+					<!-- return $scope.styles["$scope.styles.data"]; -->
+					$scope.styles.newClass = $scope.styles[$scope.styles.data];
+					return $scope.styles[$scope.styles.data];
+				}
+				else if ($scope.styles.data == "style2") {
+					$scope.styles.newClass = $scope.styles[$scope.styles.data];
+					return $scope.styles[$scope.styles.data];
+				}
+				else if($scope.styles.data == "style3") {
+					$scope.styles.newClass = $scope.styles[$scope.styles.data];
+					return $scope.styles[$scope.styles.data];
+				}
+				else if ($scope.styles.data == "style4") {
+					$scope.styles.newClass = $scope.styles[$scope.styles.data];
+					return $scope.styles[$scope.styles.data];
+				}
+				else if ($scope.styles.data == "style5") {
+					$scope.styles.newClass = $scope.styles[$scope.styles.data];
+					return $scope.styles[$scope.styles.data];
+				}
+				else {
+					$scope.styles.newClass = "styledefault";
+					return "styledefault";
+				}
+			}
+		}
+		
+});
+</script>
+</body>
+</html>
